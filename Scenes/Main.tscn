@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqujcw6mt5i8y"]
+
+[ext_resource type="PackedScene" uid="uid://j01yiitvvqrm" path="res://Assets/vaisseau/vaisseau_V3.fbx" id="1_r150o"]
+[ext_resource type="Script" uid="uid://1nc28xvcsdwy" path="res://Assets/vaisseau/ship.gd" id="2_idj7w"]
+[ext_resource type="Script" uid="uid://be34htsw2g8r5" path="res://Scenes/camera_3d.gd" id="3_kln2b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kln2b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kln2b"]
+radius = 0.257004
+
+[node name="main" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.38419e-07)
+physics_material_override = SubResource("PhysicsMaterial_kln2b")
+gravity_scale = 0.0
+script = ExtResource("2_idj7w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(5.415, 0, 0, 0, -2.36697e-07, -5.415, 0, 5.415, -2.36697e-07, 0, 0, -1.33896)
+shape = SubResource("CapsuleShape3D_kln2b")
+
+[node name="Ship" parent="RigidBody3D" instance=ExtResource("1_r150o")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.38419e-07)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, -74.7428, 0, 49.3637)
+radial_segments = 64
+rings = 32
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.299, 35.0003, -271.932)
+light_energy = 5.304
+light_indirect_energy = 7.792
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("3_kln2b")
