@@ -17,17 +17,15 @@ func _moove(delta) :
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SPACE:
-			rb.apply_force(transform.basis.z*100)
+			rb.apply_impulse(transform.basis.z*5)
 		if event.pressed and event.keycode == KEY_LEFT:
-			rb.apply_force(transform.basis.x*3)
-			#transform=transform.rotated(Vector3(0,1,0),0.1)
+			rb.apply_torque_impulse(transform.basis.y/20)
 		if event.pressed and event.keycode == KEY_RIGHT:
-			rb.apply_force(transform.basis.x*-3)
-			#transform=transform.rotated(Vector3(0,1,0),-0.1)
+			rb.apply_torque_impulse(-transform.basis.y/20)
 		if event.pressed and event.keycode == KEY_UP:
-			rb.apply_force(transform.basis.y*3)
+			rb.apply_torque_impulse(-transform.basis.x/20)
 		if event.pressed and event.keycode == KEY_DOWN:
-			rb.apply_force(transform.basis.y*-3)
-	print(rb.angular_velocity)
+			rb.apply_torque_impulse(transform.basis.x/20)
+	#print(rb.angular_velocity)
 	
  
