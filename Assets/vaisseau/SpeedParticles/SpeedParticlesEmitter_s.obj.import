@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5oqo7pfv1i2n"
+path="res://.godot/imported/SpeedParticlesEmitter_s.obj-b3c0d99a97058645fee7750b7dbd7c39.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SpeedParticlesEmitter_s.obj-b3c0d99a97058645fee7750b7dbd7c39.mesh"]
+
+source_file="res://Assets/vaisseau/SpeedParticles/SpeedParticlesEmitter_s.obj"
+dest_files=["res://.godot/imported/SpeedParticlesEmitter_s.obj-b3c0d99a97058645fee7750b7dbd7c39.mesh", "res://.godot/imported/SpeedParticlesEmitter_s.obj-b3c0d99a97058645fee7750b7dbd7c39.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

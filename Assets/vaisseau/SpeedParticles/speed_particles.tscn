@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj6dfvdv4a4ik"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2i3yo"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.01
+angle_min = -281.9
+angle_max = 23.3
+direction = Vector3(0, 0, 28.27)
+initial_velocity_min = 75.35
+initial_velocity_max = 257.98
+gravity = Vector3(0, 0, 0)
+scale_min = 0.15
+scale_max = 1.45
+hue_variation_min = -0.05
+hue_variation_max = 0.13
+
+[sub_resource type="QuadMesh" id="QuadMesh_hl6tj"]
+lightmap_size_hint = Vector2i(14, 20)
+size = Vector2(2.565, 3.675)
+
+[node name="SpeedParticles" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.6701, 0, 0)
+amount = 100
+lifetime = 1.41
+speed_scale = 1.62
+randomness = 0.79
+process_material = SubResource("ParticleProcessMaterial_2i3yo")
+draw_pass_1 = SubResource("QuadMesh_hl6tj")
