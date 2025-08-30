@@ -33,7 +33,7 @@ func _process(_delta: float) -> void :
  
 	
 	#On place la camera 30 unité derrière le vaisseau
-	position=Ship.position+Ship.transform.basis.z*-30#+Ship.transform.basis.y*7
+	position=Ship.position+Ship.transform.basis.z*-40#+Ship.transform.basis.y*7
 	
 	#On fait monter un peu la caméra le long de son propre axe y pour que le vaisseau soit dans la partie inferieure de l'ecran
 	position=position+transform.basis.y*15

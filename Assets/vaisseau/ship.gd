@@ -5,16 +5,19 @@ const turning_speed = 0.05
 
 const engine_step = 0.1
 var power = 0
+var mode = "FREE"
 
 @onready var rb = $"../RigidBody3D"
 
 func _process(_delta: float) -> void :
 	print(rb.angular_velocity)
-	
+	print(rb.rotation)
+	print("--------------")
 	rb.apply_impulse(transform.basis.z*power)
-	
-	pass
-
+	if mode == "NORMAL" :
+		rb.rotation = rb.linear_velocity.normalized()
+	if mode == "ANTINORMAL" :
+		rb.rotation = rb.linear_velocity.normalized() *-1
 func _moove(delta) :
 	pass
 	#var input_direction = Input.get_vector("move_left","move_right","move_forward","move_back")
@@ -25,13 +28,23 @@ func _unhandled_input(event):
 			power+=engine_step
 		if event.pressed and event.keycode == KEY_M:
 			power-=engine_step
-		if event.pressed and event.keycode == KEY_LEFT:
+		if event.pressed and event.keycode == KEY_N:
+			if mode != "NORMAL" :
+				mode = "NORMAL"
+			else :
+				mode = "FREE"
+		if event.pressed and event.keycode == KEY_A:
+			if mode != "ANTINORMAL" :
+				mode = "ANTINORMAL"
+			else :
+				mode = "FREE"
+		if event.pressed and mode=="FREE" and event.keycode == KEY_LEFT:
 			rb.apply_torque_impulse(transform.basis.y*turning_speed)
-		if event.pressed and event.keycode == KEY_RIGHT:
+		if event.pressed and mode=="FREE" and event.keycode == KEY_RIGHT:
 			rb.apply_torque_impulse(-transform.basis.y*turning_speed)
-		if event.pressed and event.keycode == KEY_UP:
+		if event.pressed and mode=="FREE" and event.keycode == KEY_UP:
 			rb.apply_torque_impulse(-transform.basis.x*turning_speed)
-		if event.pressed and event.keycode == KEY_DOWN:
+		if event.pressed and mode=="FREE" and event.keycode == KEY_DOWN:
 			rb.apply_torque_impulse(transform.basis.x*turning_speed)
 	#print(rb.angular_velocity)
 	
