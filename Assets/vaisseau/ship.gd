@@ -8,11 +8,13 @@ var power = 0
 var mode = "FREE"
 
 @onready var rb = $"../RigidBody3D"
+@onready var Particules = $"Ship/SpeedParticles/GPUParticles3D"
 
 func _process(_delta: float) -> void :
-	print(rb.angular_velocity)
-	print(rb.rotation)
-	print("--------------")
+	#print(rb.angular_velocity)
+	#print(rb.rotation)
+	#print("--------------")
+	CalculerParticules()
 	rb.apply_impulse(transform.basis.z*power)
 	if mode == "NORMAL" :
 		rb.rotation = rb.linear_velocity.normalized()
@@ -48,4 +50,9 @@ func _unhandled_input(event):
 			rb.apply_torque_impulse(transform.basis.x*turning_speed)
 	#print(rb.angular_velocity)
 	
+func CalculerParticules():
+	var moyenneVitesse=rb.linear_velocity.length_squared()
+	Particules.speed_scale=moyenneVitesse/2000
+	
+	print(moyenneVitesse)
  
