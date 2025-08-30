@@ -4,6 +4,8 @@ extends Camera3D
 
 @onready var Ship = $"../RigidBody3D"
 @onready var aim = %aim
+@onready var b_bar = %backward_bar
+@onready var f_bar = %forward_bar
 var old_origins = []
 var look_pos
 
@@ -43,15 +45,15 @@ func _process(_delta: float) -> void :
 	look_pos=update_cam_dir()
 	look_at(look_pos,Ship.transform.basis.y)
 	
-	#if transform.origin.y!=Ship.transform.origin.y+8 :
-	#	transform.origin.y+=(Ship.transform.origin.y+8-transform.origin.y)/20
-	#if transform.origin.z!=Ship.transform.origin.z-20 :
-	#	transform.origin.z+=(Ship.transform.origin.z-20-transform.origin.z)/20
-	#if transform.origin.x!=Ship.transform.origin.x :
-	#	transform.origin.x+=(Ship.transform.origin.x-transform.origin.x)/20
-	#transform.origin.y=Ship.transform.origin.y+8
-	#transform.origin.z=Ship.transform.origin.z-20
-	#transform.origin.x=Ship.transform.origin.x
+	update_engine_bars()
 
 	
-	
+func update_engine_bars() :
+	var current_power = Ship.power
+	if current_power==0 :
+		b_bar.value=0
+		f_bar.value=0
+	elif current_power>0 :
+		f_bar.value=current_power
+	else :
+		b_bar.value=current_power*-1
