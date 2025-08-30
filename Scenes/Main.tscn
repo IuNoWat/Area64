@@ -1,13 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqujcw6mt5i8y"]
+[gd_scene load_steps=10 format=3 uid="uid://bqujcw6mt5i8y"]
 
 [ext_resource type="PackedScene" uid="uid://j01yiitvvqrm" path="res://Assets/vaisseau/vaisseau_V3.fbx" id="1_r150o"]
 [ext_resource type="Script" uid="uid://1nc28xvcsdwy" path="res://Assets/vaisseau/ship.gd" id="2_idj7w"]
 [ext_resource type="Script" uid="uid://be34htsw2g8r5" path="res://Scenes/camera_3d.gd" id="3_kln2b"]
+[ext_resource type="Texture2D" uid="uid://colygl40qq6k4" path="res://Assets/Skybox/Skybox_Texture_v001.png" id="4_rgh2o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kln2b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kln2b"]
 radius = 0.257004
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pbw6q"]
+panorama = ExtResource("4_rgh2o")
+
+[sub_resource type="Sky" id="Sky_v1gob"]
+sky_material = SubResource("PanoramaSkyMaterial_pbw6q")
+
+[sub_resource type="Environment" id="Environment_jw32o"]
+background_mode = 2
+sky = SubResource("Sky_v1gob")
 
 [node name="main" type="Node3D"]
 
@@ -121,3 +132,6 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 fill_mode = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Camera3D"]
+environment = SubResource("Environment_jw32o")
